@@ -23,8 +23,10 @@ void selection_sort(int *array, size_t size)
             main_index = j;
 
 
-        print_array(array, size);
         if(main_index != i)
+        {
             swap(&array[main_index], &array[i]);
+            print_array(array, size);
+        }
     }
 }
