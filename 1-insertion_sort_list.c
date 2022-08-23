@@ -11,33 +11,33 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *swap = NULL;
+	listint_t *node = NULL;
 
 	if (list == NULL || (*list)->next == NULL)
 		return;
 
-	swap = (*list)->next;
+	node = (*list)->next;
 
-	while (swap)
+	while (node)
 	{
-		while (swap->prev && swap->n < swap->prev->n)
+		while (node->prev && node->n < node->prev->n)
 		{
-			swap->prev->next = swap->next;
+			node->prev->next = node->next;
 
-			if (swap->next)
-				swap->next->prev = swap->prev;
-			swap->next = swap->prev;
-			swap->prev = swap->prev->prev;
-			swap->next->prev = swap;
+			if (node->next)
+				node->next->prev = node->prev;
+			node->next = node->prev;
+			node->prev = node->prev->prev;
+			node->next->prev = node;
 
-			if (swap->prev == NULL)
-				*list = swap;
+			if (node->prev == NULL)
+				*list = node;
 			else
 			{
-				swap->prev->next = swap;
+				node->prev->next = node;
 			}
 			print_list(*list);
 		}
-		swap = swap->next;
+		node = node->next;
 	}
 }
