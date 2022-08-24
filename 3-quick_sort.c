@@ -1,41 +1,84 @@
 #include "sort.h"
 
-void swap(int* a, int* b)
+/**
+  * quick_sort - a function that sorts an array of integers in ascending
+  * order using the Quick sort algorithm
+  * @array: the array to print
+  * @size: size of the array
+  * Return: void
+  */
+void quick_sort(int *array, size_t size)
 {
-    int t = *a;
-    *a = *b;
-    *b = t;
+	if (array == NULL || size <= 1)
+		return;
+
+	quick_sort_r(array, 0, size - 1, size);
 }
 
-int partition (int arr[], int low, int high)
+/**
+  * quick_sort_rec - quick sort recursion
+  * @array: the array to print
+  * @lower: the first part
+  * @higher: the second part
+  * @size: size of the array
+  * Return: void
+  */
+void quick_sort_r(int *array, int low, int high, size_t size)
 {
-    int pivot = arr[high];
-    int i = (low - 1);
+	int pivot = 0;
 
-    for (int j = low; j <= high - 1; j++)
-    {
-
-        if (arr[j] < pivot)
-        {
-            i++;
-            swap(&arr[i], &arr[j]);
-            print_array(arr;)
-        }
-    }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
+	if (low < high)
+	{
+		pivot = partition(array, low, high, size);
+		quick_sort_r(array, low, pivot - 1, size);
+		quick_sort_r(array, pivot + 1, high, size);
+	}
 }
 
+/**
+  * partition - a function that divides an array in two partitions
+  * @array: the array
+  * @lower: first part
+  * @higher: second part
+  * @size: the size
+  * Return: void
+  */
 
-void quickSort(int arr[], int low, int high)
+int partition(int *array, int low, int high, size_t size)
 {
-    if (low < high)
-    {
-
-        int pi = partition(arr, low, high);
+    int i;
+    int j = high;
 
 
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
+	int part = array[low];
+
+	for (i = low; j < high; i++)
+	{
+		if (array[j] <= part)
+		{
+
+      swap(&array[i], &array[j]);
+      ++i;
+      print_array(array, size);
+
+		}
+	}
+    swap(&array[i], &array[j]);
+    print_array(array, size);
+
+	return (i);
+}
+
+/**
+ * swap - A function to swap two elements
+ * @xp: first element
+ * @yp: second element
+ * Return: void
+ */
+
+void swap(int *xp, int *yp)
+{
+int temp = *xp;
+*xp = *yp;
+*yp = temp;
 }
