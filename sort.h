@@ -32,7 +32,6 @@ void quick_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 void quick_sort_r(int *array, int lower, int higher, size_t size);
 void quickSort(int arr[], int low, int high);
-void quick_sort_r(int *array, int lower, int higher, size_t size);
-int partition(int *array, int lower, int higher, size_t size);
+int partition(int *array, int low, int high, size_t size);
 
 #endif /* HEADER */

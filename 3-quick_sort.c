@@ -7,6 +7,7 @@
   * @size: size of the array
   * Return: void
   */
+
 void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size <= 1)
@@ -16,13 +17,14 @@ void quick_sort(int *array, size_t size)
 }
 
 /**
-  * quick_sort_rec - quick sort recursion
+  * quick_sort_r - quick sort recursion
   * @array: the array to print
-  * @lower: the first part
-  * @higher: the second part
+  * @low: the first part
+  * @high: the second part
   * @size: size of the array
   * Return: void
   */
+
 void quick_sort_r(int *array, int low, int high, size_t size)
 {
 	int pivot = 0;
@@ -38,33 +40,32 @@ void quick_sort_r(int *array, int low, int high, size_t size)
 /**
   * partition - a function that divides an array in two partitions
   * @array: the array
-  * @lower: first part
-  * @higher: second part
+  * @low: first part
+  * @high: second part
   * @size: the size
   * Return: void
   */
 
 int partition(int *array, int low, int high, size_t size)
 {
-    int i;
-    int j = high;
+int i = low;
+int j = high;
+int pivot = array[high];
 
-
-	int part = array[low];
-
-	for (i = low; j < high; i++)
-	{
-		if (array[j] <= part)
+for (j = low; j < high; j++)
+{
+if (array[j] <= pivot)
 		{
+swap(&array[i], &array[j]);
 
-      swap(&array[i], &array[j]);
-      ++i;
-      print_array(array, size);
-
+if (i != j)
+print_array(array, size);
+++i;
 		}
 	}
-    swap(&array[i], &array[j]);
-    print_array(array, size);
+swap(&array[i], &array[high]);
+if (i != j)
+print_array(array, size);
 
 	return (i);
 }
